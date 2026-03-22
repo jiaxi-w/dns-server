@@ -34,13 +34,13 @@ def generate_aes_key(password, salt):
 def encrypt_with_aes(input_string, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
-    encrypted_data = f.encrypt(input_string.encode('utf-8')) #call the Fernet encrypt method
-    return encrypted_data    
+    encrypted_data = f.encrypt(input_string) #call the Fernet encrypt method
+    return encrypted_data.encode('utf-8')    
 
 def decrypt_with_aes(encrypted_data, password, salt):
     key = generate_aes_key(password, salt)
     f = Fernet(key)
-    decrypted_data = f.decrypt(encrypted_data.decode('utf-8')) #call the Fernet decrypt method
+    decrypted_data = f.decrypt(encrypted_data) #call the Fernet decrypt method
     return decrypted_data.decode('utf-8')
 
 salt = "Tandon".encode('utf-8') # Remember it should be a byte-object
